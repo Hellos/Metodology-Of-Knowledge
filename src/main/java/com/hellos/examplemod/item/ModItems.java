@@ -15,6 +15,9 @@ public class ModItems {
     public static final RegistryObject<Item> INFINUM = ITEMS.register("infinium",
             () -> new Item(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
 
+    public static final RegistryObject<Item> RAW_INFINUM = ITEMS.register("raw_infinium",
+            () -> new Item(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
+
     public static void regiser(IEventBus eventBus){
         ITEMS.register(eventBus);
     }
