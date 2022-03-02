@@ -1,11 +1,17 @@
 {
   "item.tutorialmod.infinium": "Infinium",
 
+  "item.tutorialmod.dowsing_rod": "Dowsing Rod",
+
   "item.tutorialmod.raw_infinium": "Raw Infinium",
 
   "block.tutorialmod.infinium_block": "Infinium Block",
 
   "block.tutorialmod.infinium_ore": "Infinium Ore",
 
-  "itemGroup.tutorialtab": "Hellos Mod"
+  "block.tutorialmod.speedy_block": "Speedy Block",
+
+  "itemGroup.tutorialtab": "Hellos Mod",
+
+  "item.tutorialmod.dowsing_rod.no_valuables": "No valuables found!"
 }

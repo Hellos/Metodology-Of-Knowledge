@@ -1,6 +1,7 @@
 package com.hellos.examplemod.block;
 
 import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.block.custom.SpeedyBlock;
 import com.hellos.examplemod.item.ModCreativeModeTab;
 import com.hellos.examplemod.item.ModItems;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -27,6 +28,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> INFINUM_ORE = registerBlock("infinium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> SPEEDY_BLOCK = registerBlock("speedy_block",
+            () -> new SpeedyBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){

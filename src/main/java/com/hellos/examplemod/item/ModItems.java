@@ -1,6 +1,7 @@
 package com.hellos.examplemod.item;
 
 import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.item.custom.DowsingRodItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,6 +18,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> RAW_INFINUM = ITEMS.register("raw_infinium",
             () -> new Item(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
+
+    public static final RegistryObject<Item> DOWSING_ROD = ITEMS.register("dowsing_rod",
+            () -> new DowsingRodItem(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB)).durability(64)));
 
     public static void regiser(IEventBus eventBus){
         ITEMS.register(eventBus);
