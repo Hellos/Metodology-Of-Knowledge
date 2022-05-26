@@ -5,6 +5,8 @@
 
   "item.tutorialmod.raw_infinium": "Raw Infinium",
 
+  "item.tutorialmod.cucumber": "Cucumber",
+
   "block.tutorialmod.infinium_block": "Infinium Block",
 
   "block.tutorialmod.infinium_ore": "Infinium Ore",
@@ -13,5 +15,7 @@
 
   "itemGroup.tutorialtab": "Hellos Mod",
 
-  "item.tutorialmod.dowsing_rod.no_valuables": "No valuables found!"
+  "item.tutorialmod.dowsing_rod.no_valuables": "No valuables found!",
+
+
 }

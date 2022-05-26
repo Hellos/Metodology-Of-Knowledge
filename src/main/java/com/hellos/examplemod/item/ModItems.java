@@ -22,6 +22,9 @@ public class ModItems {
     public static final RegistryObject<Item> DOWSING_ROD = ITEMS.register("dowsing_rod",
             () -> new DowsingRodItem(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB)).durability(64)));
 
+    public static final RegistryObject<Item> CUCUMBER = ITEMS.register("cucumber",
+            () -> new Item(new Item.Properties().food(ModFoods.CUCUMBER).tab((ModCreativeModeTab.TUTORIAL_TAB))));
+
     public static void regiser(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

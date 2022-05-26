@@ -26,7 +26,7 @@ public class DowsingRodItem extends Item {
             Player player = pContext.getPlayer();
             boolean foundBlock = false;
 
-            for(int i = 0; i <= posClicked.getY() + 64; i++){
+            for(int i = 0; i <=  posClicked.getY() + 64; i++){
                 Block blockBelow = pContext.getLevel().getBlockState(posClicked.below(i)).getBlock();
 
                 if(isValuableBlock(blockBelow)){
@@ -50,7 +50,7 @@ public class DowsingRodItem extends Item {
     }
 
     private void outputValuableCoordinates(BlockPos blockPos, Player player, Block blockBelow){
-        player.sendMessage(new TextComponent("Found " + blockBelow.asItem().getRegistryName().toString() + " at " +
+        player.sendMessage(new TextComponent("§bFound§r " + blockBelow.asItem().getRegistryName().toString() + " at " +
                 "(" + blockPos.getX() + "," + blockPos.getY() +"," + blockPos.getZ() + ")"), player.getUUID());
     }
 
