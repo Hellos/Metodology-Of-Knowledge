@@ -1,6 +1,7 @@
 package com.hellos.examplemod.item;
 
 import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.item.custom.CoalCokeItem;
 import com.hellos.examplemod.item.custom.DowsingRodItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -24,6 +25,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> CUCUMBER = ITEMS.register("cucumber",
             () -> new Item(new Item.Properties().food(ModFoods.CUCUMBER).tab((ModCreativeModeTab.TUTORIAL_TAB))));
+
+    public static final RegistryObject<Item> COAL_COKE = ITEMS.register("coal_coke",
+            () -> new CoalCokeItem(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
 
     public static void regiser(IEventBus eventBus){
         ITEMS.register(eventBus);
