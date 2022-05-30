@@ -70,8 +70,10 @@ public class DowsingRodItem extends Item {
     }
 
     private void outputValuableCoordinates(BlockPos blockPos, Player player, Block blockBelow){
-        player.sendMessage(new TextComponent("§bFound§r " + blockBelow.asItem().getRegistryName().toString() + " at " +
+        player.sendMessage(new TextComponent("Found " + blockBelow.asItem().getRegistryName().toString() + " at " +
                 "(" + blockPos.getX() + "," + blockPos.getY() +"," + blockPos.getZ() + ")"), player.getUUID());
+
+
     }
 
     private boolean isValuableBlock(Block block){
