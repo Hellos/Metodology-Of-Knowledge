@@ -35,7 +35,6 @@ public class DowsingRodItem extends Item {
             BlockPos posClicked = pContext.getClickedPos();
             Player player = pContext.getPlayer();
             boolean foundBlock = false;
-
             for(int i = 0; i <=  posClicked.getY() + 64; i++){
                 Block blockBelow = pContext.getLevel().getBlockState(posClicked.below(i)).getBlock();
 
@@ -52,7 +51,7 @@ public class DowsingRodItem extends Item {
                 player.sendMessage(new TranslatableComponent("item.tutorialmod.dowsing_rod.no_valuables"), player.getUUID());
             }
         }
-
+        pContext.getLevel().destroyBlock(pContext.getClickedPos(), true);
         pContext.getItemInHand().hurtAndBreak(1, pContext.getPlayer(),
                 (player) -> player.broadcastBreakEvent(player.getUsedItemHand()));
 

@@ -4,10 +4,13 @@
   "item.tutorialmod.raw_infinium": "Raw Infinium",
   "item.tutorialmod.coal_coke": "Coke Coal",
   "item.tutorialmod.cucumber": "Cucumber",
+  "item.tutorialmod.infinium_pickaxe": "Infinium Pickaxe",
 
   "block.tutorialmod.infinium_block": "Infinium Block",
   "block.tutorialmod.infinium_ore": "Infinium Ore",
   "block.tutorialmod.speedy_block": "Speedy Block",
+  "block.tutorialmod.macerator": "Macerator",
+  "block.tutorialmod.custom_glass": "Custom Glass",
 
   "block.tutorialmod.infinium_stairs": "Infinium Stairs",
   "block.tutorialmod.infinium_slab": "Infinium Slab",
