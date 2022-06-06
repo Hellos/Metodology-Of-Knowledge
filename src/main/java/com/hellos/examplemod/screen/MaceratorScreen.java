@@ -27,6 +27,12 @@ public class MaceratorScreen extends AbstractContainerScreen<MaceratorMenu> {
         int y = (height - imageHeight) / 2;
 
         this.blit(pPoseStack, x, y, 0 ,0, imageWidth, imageHeight);
+
+        blit(pPoseStack, x + 149, y + 69, 177, 29, 13, menu.getScaledEnergy());
+
+        if(menu.isCrafting()){
+            blit(pPoseStack, x + 89, y + 32, 176, 0, 8, menu.getScaledProgress());
+        }
     }
 
     @Override

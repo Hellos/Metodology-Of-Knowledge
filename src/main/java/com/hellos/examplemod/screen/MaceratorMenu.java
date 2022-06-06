@@ -6,13 +6,11 @@ import com.hellos.examplemod.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.Nullable;
@@ -21,16 +19,18 @@ public class MaceratorMenu extends AbstractContainerMenu {
 
     private final MaceratorBlockEntity blockEntity;
     private final Level level;
+    private final ContainerData data;
 
     public MaceratorMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
 
-    public MaceratorMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+    public MaceratorMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.MACERATOR_MENU.get(), pContainerId);
         checkContainerSize(inv, 2);
         blockEntity = ((MaceratorBlockEntity) entity);
         this.level = inv.player.level;
+        this.data = data;
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -39,8 +39,30 @@ public class MaceratorMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 0, 84, 11));
             this.addSlot(new ModResultSlot(handler, 1, 84, 63));
         });
+
+        addDataSlots(data);
     }
 
+
+    public boolean isCrafting() {
+        return data.get(0) > 0;
+    }
+
+    public int getScaledProgress() {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);  // Max Progress
+        int progressArrowSize = 26; // This is the height in pixels of your arrow
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+
+    public int getScaledEnergy(){
+        int energyStored = this.data.get(2);
+        int maxEnergyStored = this.data.get(3);
+        int energyBufferSize = 55;
+
+        return maxEnergyStored != 0 && energyStored != 0 ? energyStored * energyBufferSize / maxEnergyStored : 0;
+    }
 
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;

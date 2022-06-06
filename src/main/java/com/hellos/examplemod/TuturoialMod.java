@@ -3,6 +3,7 @@ package com.hellos.examplemod;
 import com.hellos.examplemod.block.ModBlocks;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
 import com.hellos.examplemod.item.ModItems;
+import com.hellos.examplemod.recipe.ModRecipes;
 import com.hellos.examplemod.screen.MaceratorScreen;
 import com.hellos.examplemod.screen.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -41,6 +42,8 @@ public class TuturoialMod
         ModBlocksEntities.register(eventBus);
 
         ModMenuTypes.register(eventBus);
+
+        ModRecipes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

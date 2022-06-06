@@ -23,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class MaceratorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final BooleanProperty TURNED_ON = BooleanProperty.create("turned_on");
 
 
     public MaceratorBlock(Properties properties) {
@@ -35,12 +36,12 @@ public class MaceratorBlock extends BaseEntityBlock {
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(TURNED_ON, Boolean.FALSE).setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING);
+        pBuilder.add(FACING, TURNED_ON);
     }
 
 

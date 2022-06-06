@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,turned_on=false": {
       "model": "tutorialmod:block/macerator",
       "y": 90
     },
-    "facing=north": {
+    "facing=east,turned_on=true": {
+      "model": "tutorialmod:block/macerator_on",
+      "y": 90
+    },
+    "facing=north,turned_on=false": {
       "model": "tutorialmod:block/macerator"
     },
-    "facing=south": {
+    "facing=north,turned_on=true": {
+      "model": "tutorialmod:block/macerator_on"
+    },
+    "facing=south,turned_on=false": {
       "model": "tutorialmod:block/macerator",
       "y": 180
     },
-    "facing=west": {
+    "facing=south,turned_on=true": {
+      "model": "tutorialmod:block/macerator_on",
+      "y": 180
+    },
+    "facing=west,turned_on=false": {
       "model": "tutorialmod:block/macerator",
+      "y": 270
+    },
+    "facing=west,turned_on=true": {
+      "model": "tutorialmod:block/macerator_on",
       "y": 270
     }
   }
