@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "tutorialmod:block/macerator",
+      "y": 90
+    },
+    "facing=north": {
       "model": "tutorialmod:block/macerator"
+    },
+    "facing=south": {
+      "model": "tutorialmod:block/macerator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "tutorialmod:block/macerator",
+      "y": 270
     }
   }
 }

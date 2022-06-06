@@ -1,7 +1,11 @@
 package com.hellos.examplemod;
 
 import com.hellos.examplemod.block.ModBlocks;
+import com.hellos.examplemod.block.entity.ModBlocksEntities;
 import com.hellos.examplemod.item.ModItems;
+import com.hellos.examplemod.screen.MaceratorScreen;
+import com.hellos.examplemod.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
@@ -12,10 +16,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -37,9 +38,13 @@ public class TuturoialMod
 
         ModItems.regiser(eventBus);
         ModBlocks.register(eventBus);
+        ModBlocksEntities.register(eventBus);
+
+        ModMenuTypes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
+        eventBus.addListener(this::serverSetup);
         // Register the enqueueIMC method for modloading
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -47,6 +52,12 @@ public class TuturoialMod
 
     private void clientSetup(FMLClientSetupEvent event){
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CUSTOM_GLASS.get(), RenderType.translucent());
+
+        MenuScreens.register(ModMenuTypes.MACERATOR_MENU.get(), MaceratorScreen::new);
+    }
+
+    private void serverSetup(FMLDedicatedServerSetupEvent event){
+
     }
 
     private void setup(final FMLCommonSetupEvent event)
