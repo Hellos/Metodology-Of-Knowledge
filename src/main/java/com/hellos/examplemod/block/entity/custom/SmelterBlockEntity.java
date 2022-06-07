@@ -1,9 +1,9 @@
 package com.hellos.examplemod.block.entity.custom;
 
-import com.hellos.examplemod.block.custom.MaceratorBlock;
+import com.hellos.examplemod.block.custom.SmelterBlock;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
 import com.hellos.examplemod.recipe.MaceratorRecipe;
-import com.hellos.examplemod.screen.macerator.MaceratorMenu;
+import com.hellos.examplemod.screen.smelter.SmelterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
-public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, IEnergyStorage {
+public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEnergyStorage {
     private int energyStored = 0;
     private int maxEnergyStored = 256000;
 
@@ -49,26 +49,26 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
     private int progress = 0;
     private int maxProgress = 72;
 
-    public MaceratorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(ModBlocksEntities.MACERATOR_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
+    public SmelterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
+        super(ModBlocksEntities.SMELTER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
         this.energyStored = 256000;
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return MaceratorBlockEntity.this.progress;
-                    case 1: return MaceratorBlockEntity.this.maxProgress;
-                    case 2: return MaceratorBlockEntity.this.energyStored;
-                    case 3: return MaceratorBlockEntity.this.maxEnergyStored;
+                    case 0: return SmelterBlockEntity.this.progress;
+                    case 1: return SmelterBlockEntity.this.maxProgress;
+                    case 2: return SmelterBlockEntity.this.energyStored;
+                    case 3: return SmelterBlockEntity.this.maxEnergyStored;
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: MaceratorBlockEntity.this.progress = value; break;
-                    case 1: MaceratorBlockEntity.this.maxProgress = value; break;
-                    case 2: MaceratorBlockEntity.this.energyStored = value; break;
-                    case 3: MaceratorBlockEntity.this.maxEnergyStored = value; break;
+                    case 0: SmelterBlockEntity.this.progress = value; break;
+                    case 1: SmelterBlockEntity.this.maxProgress = value; break;
+                    case 2: SmelterBlockEntity.this.energyStored = value; break;
+                    case 3: SmelterBlockEntity.this.maxEnergyStored = value; break;
                 }
             }
 
@@ -80,13 +80,13 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
 
     @Override
     public Component getDisplayName() {
-        return new TextComponent("Macerator");
+        return new TextComponent("Smelter");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new MaceratorMenu(pContainerId, pInventory, this, this.data);
+        return new SmelterMenu(pContainerId, pInventory, this, this.data);
     }
 
     @Nonnull
@@ -114,8 +114,8 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
-        tag.putInt("macerator.progress", progress);
-        tag.putInt("macerator.energy", energyStored);
+        tag.putInt("smelter.progress", progress);
+        tag.putInt("smelter.energy", energyStored);
         super.saveAdditional(tag);
     }
 
@@ -123,8 +123,8 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
     public void load(CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
-        progress = nbt.getInt("macerator.progress");
-        energyStored = nbt.getInt("macerator.energy");
+        progress = nbt.getInt("smelter.progress");
+        energyStored = nbt.getInt("smelter.energy");
     }
 
     public void drops() {
@@ -136,23 +136,23 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, MaceratorBlockEntity pBlockEntity) {
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, SmelterBlockEntity pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasEnergy(pBlockEntity)) {
             pBlockEntity.progress++;
             pBlockEntity.energyStored-=32;
-            pLevel.setBlock(pPos, pState.setValue(MaceratorBlock.TURNED_ON, Boolean.TRUE), 3);
+            pLevel.setBlock(pPos, pState.setValue(SmelterBlock.TURNED_ON, Boolean.TRUE), 3);
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.progress > pBlockEntity.maxProgress) {
                 craftItem(pBlockEntity);
             }
         } else {
-            pLevel.setBlock(pPos, pState.setValue(MaceratorBlock.TURNED_ON, Boolean.FALSE), 3);
+            pLevel.setBlock(pPos, pState.setValue(SmelterBlock.TURNED_ON, Boolean.FALSE), 3);
             pBlockEntity.resetProgress();
             setChanged(pLevel, pPos, pState);
         }
     }
 
-    private static boolean hasRecipe(MaceratorBlockEntity entity) {
+    private static boolean hasRecipe(SmelterBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
@@ -167,19 +167,19 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
                 && hasWaterInWaterSlot(entity) && hasToolsInToolSlot(entity);
     }
 
-    private static boolean hasEnergy(MaceratorBlockEntity entity){
+    private static boolean hasEnergy(SmelterBlockEntity entity){
         return entity.energyStored != 0;
     }
 
-    private static boolean hasWaterInWaterSlot(MaceratorBlockEntity entity) {
+    private static boolean hasWaterInWaterSlot(SmelterBlockEntity entity) {
         return true;
     }
 
-    private static boolean hasToolsInToolSlot(MaceratorBlockEntity entity) {
+    private static boolean hasToolsInToolSlot(SmelterBlockEntity entity) {
         return true;
     }
 
-    private static void craftItem(MaceratorBlockEntity entity) {
+    private static void craftItem(SmelterBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
@@ -207,7 +207,7 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        return inventory.getItem(1).getMaxStackSize() > inventory.getItem(1).getCount() + 1;
+        return inventory.getItem(1).getMaxStackSize() > inventory.getItem(1).getCount();
     }
 
     @Override

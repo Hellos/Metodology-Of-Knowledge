@@ -1,4 +1,4 @@
-package com.hellos.examplemod.screen;
+package com.hellos.examplemod.screen.macerator;
 
 import com.hellos.examplemod.TuturoialMod;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -25,14 +25,21 @@ public class MaceratorScreen extends AbstractContainerScreen<MaceratorMenu> {
         RenderSystem.setShaderTexture(0, TEXTRURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
+        ;
 
         this.blit(pPoseStack, x, y, 0 ,0, imageWidth, imageHeight);
 
-        blit(pPoseStack, x + 149, y + 69, 177, 29, 13, menu.getScaledEnergy());
+
+
+        blit(pPoseStack, x + 149, y + 70 - menu.getScaledEnergy(), 177, 83- menu.getScaledEnergy(), 13, menu.getScaledEnergy());
 
         if(menu.isCrafting()){
             blit(pPoseStack, x + 89, y + 32, 176, 0, 8, menu.getScaledProgress());
         }
+    }
+
+    public static double mapNumber(double value, double rangeMin, double rangeMax, double resultMin, double resultMax){
+        return (value - rangeMin) / (rangeMax - rangeMin) * (resultMax - resultMin) + resultMin;
     }
 
     @Override

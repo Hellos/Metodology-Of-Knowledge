@@ -2,6 +2,7 @@ package com.hellos.examplemod.block;
 
 import com.hellos.examplemod.TuturoialMod;
 import com.hellos.examplemod.block.custom.MaceratorBlock;
+import com.hellos.examplemod.block.custom.SmelterBlock;
 import com.hellos.examplemod.block.custom.SpeedyBlock;
 import com.hellos.examplemod.item.ModCreativeModeTab;
 import com.hellos.examplemod.item.ModItems;
@@ -51,7 +52,15 @@ public class ModBlocks {
                 }
             }, ModCreativeModeTab.TUTORIAL_TAB);
 
-
+    public static final RegistryObject<Block> SMELTER = registerBlock("smelter",
+            () -> new SmelterBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(new SoundType(3.0F, 0.5F, SoundEvents.NETHERITE_BLOCK_BREAK, SoundEvents.NETHERITE_BLOCK_STEP, SoundEvents.NETHERITE_BLOCK_PLACE, SoundEvents.NETHERITE_BLOCK_HIT, SoundEvents.NETHERITE_BLOCK_FALL))
+                    .strength(5f).requiresCorrectToolForDrops()){
+                @Override
+                public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
+                    pEntity.hurt(DamageSource.FALL, 0.5f);
+                    super.stepOn(pLevel, pPos, pState, pEntity);
+                }
+            }, ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> SPEEDY_BLOCK = registerBlock("speedy_block",
             () -> new SpeedyBlock(BlockBehaviour.Properties.of(Material.METAL)

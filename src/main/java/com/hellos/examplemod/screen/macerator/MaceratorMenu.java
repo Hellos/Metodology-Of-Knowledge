@@ -1,7 +1,8 @@
-package com.hellos.examplemod.screen;
+package com.hellos.examplemod.screen.macerator;
 
 import com.hellos.examplemod.block.ModBlocks;
 import com.hellos.examplemod.block.entity.custom.MaceratorBlockEntity;
+import com.hellos.examplemod.screen.ModMenuTypes;
 import com.hellos.examplemod.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
