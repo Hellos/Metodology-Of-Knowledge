@@ -13,6 +13,8 @@ public class ModRecipes {
 
     public static final RegistryObject<RecipeSerializer<MaceratorRecipe>> MACERATOR_RECIPE_SERIALIZER =
             SERIALIZERS.register("macerating", () -> MaceratorRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<SmelterRecipe>> SMELTER_RECIPE_SERIALIZER =
+            SERIALIZERS.register("smelting", () -> SmelterRecipe.Serializer.INSTANCE);
 
     public static void register(IEventBus eventBus){
         SERIALIZERS.register(eventBus);

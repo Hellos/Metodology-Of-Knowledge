@@ -2,7 +2,7 @@ package com.hellos.examplemod.block.entity.custom;
 
 import com.hellos.examplemod.block.custom.SmelterBlock;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
-import com.hellos.examplemod.recipe.MaceratorRecipe;
+import com.hellos.examplemod.recipe.SmelterRecipe;
 import com.hellos.examplemod.screen.smelter.SmelterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -47,7 +47,7 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 80;
 
     public SmelterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlocksEntities.SMELTER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
@@ -159,8 +159,8 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<MaceratorRecipe> match = level.getRecipeManager()
-                .getRecipeFor(MaceratorRecipe.Type.INSTANCE, inventory, level);
+        Optional<SmelterRecipe> match = level.getRecipeManager()
+                .getRecipeFor(SmelterRecipe.Type.INSTANCE, inventory, level);
 
         return canInsertAmountIntoOutputSlot(inventory) && match.isPresent()
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
@@ -186,13 +186,13 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        Optional<MaceratorRecipe> match = level.getRecipeManager()
-                .getRecipeFor(MaceratorRecipe.Type.INSTANCE, inventory, level);
+        Optional<SmelterRecipe> match = level.getRecipeManager()
+                .getRecipeFor(SmelterRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
             entity.itemHandler.extractItem(0,1, false);
             entity.itemHandler.setStackInSlot(1, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(1).getCount() + 2));
+                    entity.itemHandler.getStackInSlot(1).getCount() + 1));
 
             entity.resetProgress();
         }
