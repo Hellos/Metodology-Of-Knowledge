@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "copper_ingot",
+  "ingredients": [
+    {
+      "item": "tutorialmod:tin_block"
+    }
+  ],
+  "result": {
+    "item": "tutorialmod:tin_ingot",
+    "count": 9
+  }
+}

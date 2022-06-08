@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -26,14 +27,11 @@ public class SmelterScreen extends AbstractContainerScreen<SmelterMenu> {
         RenderSystem.setShaderTexture(0, TEXTRURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        ;
-
         this.blit(pPoseStack, x, y, 0 ,0, imageWidth, imageHeight);
-
-
-
         blit(pPoseStack, x + 149, y + 70 - menu.getScaledEnergy(), 177, 83- menu.getScaledEnergy(), 13, menu.getScaledEnergy());
-
+        if(isHovering(x,y,149,70, pMouseX, pMouseY)){
+            renderTooltip(pPoseStack, new TextComponent("HE"), pMouseX, pMouseY);
+        }
         if(menu.isCrafting()){
             blit(pPoseStack, x + 89, y + 32, 176, 0, 8, menu.getScaledProgress());
         }

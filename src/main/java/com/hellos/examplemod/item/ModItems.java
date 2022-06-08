@@ -37,6 +37,11 @@ public class ModItems {
     public static final RegistryObject<Item> INFINIUM_PICKAXE = ITEMS.register("infinium_pickaxe",
             () -> new SuperMegaSwordItem(ModTiers.INFINIUM, 2, 3, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB))) ;
 
+    public static final RegistryObject<Item> RAW_TIN = ITEMS.register("raw_tin",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> TIN_INGOT = ITEMS.register("tin_ingot",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
 
     public static void regiser(IEventBus eventBus){
         ITEMS.register(eventBus);

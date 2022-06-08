@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "tutorialmod:infinium_ore",
+    "tutorialmod:tin_ore",
+    "tutorialmod:deepslate_tin_ore",
     "tutorialmod:infinium_block"
   ]
 }

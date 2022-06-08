@@ -1,5 +1,7 @@
 {
   "item.tutorialmod.infinium": "Infinium",
+  "item.tutorialmod.raw_tin": "Raw Tin",
+  "item.tutorialmod.tin_ingot": "Tin Ingot",
   "item.tutorialmod.dowsing_rod": "Dowsing Rod",
   "item.tutorialmod.raw_infinium": "Raw Infinium",
   "item.tutorialmod.coal_coke": "Coke Coal",
@@ -8,8 +10,12 @@
 
   "block.tutorialmod.infinium_block": "Infinium Block",
   "block.tutorialmod.infinium_ore": "Infinium Ore",
+  "block.tutorialmod.tin_ore": "Tin Ore",
+  "block.tutorialmod.deepslate_tin_ore": "Deepslate Tin Ore",
+  "block.tutorialmod.tin_block": "Tin Block",
   "block.tutorialmod.speedy_block": "Speedy Block",
   "block.tutorialmod.macerator": "Macerator",
+  "block.tutorialmod.smelter": "Smelter",
   "block.tutorialmod.custom_glass": "Custom Glass",
 
   "block.tutorialmod.infinium_stairs": "Infinium Stairs",
