@@ -51,8 +51,12 @@ public class ModBlocks {
                     .strength(4.5f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> TIN_BLOCK = registerBlock("tin_block",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3.0f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.COPPER)), ModCreativeModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> RAW_TIN_BLOCK = registerBlock("raw_tin_block",
+            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(5.0f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.COPPER)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> MACERATOR = registerBlock("macerator",
             () -> new MaceratorBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(new SoundType(3.0F, 0.5F, SoundEvents.NETHERITE_BLOCK_BREAK, SoundEvents.NETHERITE_BLOCK_STEP, SoundEvents.NETHERITE_BLOCK_PLACE, SoundEvents.NETHERITE_BLOCK_HIT, SoundEvents.NETHERITE_BLOCK_FALL))

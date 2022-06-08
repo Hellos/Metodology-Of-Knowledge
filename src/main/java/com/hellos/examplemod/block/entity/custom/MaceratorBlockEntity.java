@@ -1,5 +1,6 @@
 package com.hellos.examplemod.block.entity.custom;
 
+import com.hellos.examplemod.TuturoialMod;
 import com.hellos.examplemod.block.custom.MaceratorBlock;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
 import com.hellos.examplemod.recipe.MaceratorRecipe;
@@ -31,6 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, IEnergyStorage {
     private int energyStored = 0;
@@ -162,6 +164,10 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
         Optional<MaceratorRecipe> match = level.getRecipeManager()
                 .getRecipeFor(MaceratorRecipe.Type.INSTANCE, inventory, level);
 
+        if(match.isPresent()) {
+            entity.maxProgress = match.get().getMaxProgress();
+        }
+
         return canInsertAmountIntoOutputSlot(inventory) && match.isPresent()
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
                 && hasWaterInWaterSlot(entity) && hasToolsInToolSlot(entity);
@@ -190,6 +196,7 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
                 .getRecipeFor(MaceratorRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
+            TuturoialMod.LOGGER.error(entity.maxProgress);
             entity.itemHandler.extractItem(0,1, false);
             entity.itemHandler.setStackInSlot(1, new ItemStack(match.get().getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(1).getCount() + 2));

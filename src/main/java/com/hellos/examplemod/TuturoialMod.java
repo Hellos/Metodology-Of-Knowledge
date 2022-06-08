@@ -25,7 +25,7 @@ public class TuturoialMod
 {
     public static final String MOD_ID = "tutorialmod";
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public TuturoialMod() {
 

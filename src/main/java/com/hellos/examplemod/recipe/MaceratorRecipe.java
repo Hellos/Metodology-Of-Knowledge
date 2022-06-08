@@ -18,17 +18,23 @@ public class MaceratorRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
+    private final int maxProgress;
 
     public MaceratorRecipe(ResourceLocation id, ItemStack output,
-                           NonNullList<Ingredient> recipeItems){
+                           NonNullList<Ingredient> recipeItems, int maxProgress){
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
+        this.maxProgress = maxProgress;
     }
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
         return recipeItems.get(0).test(pContainer.getItem(0));
+    }
+
+    public int getMaxProgress() {
+        return maxProgress;
     }
 
     @Override
@@ -75,7 +81,7 @@ public class MaceratorRecipe implements Recipe<SimpleContainer> {
         @Override
         public MaceratorRecipe fromJson(ResourceLocation id, JsonObject json) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
-
+            int maxProgress = GsonHelper.getAsInt(json, "craft_time");
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
 
@@ -83,7 +89,7 @@ public class MaceratorRecipe implements Recipe<SimpleContainer> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new MaceratorRecipe(id, output, inputs);
+            return new MaceratorRecipe(id, output, inputs, maxProgress);
         }
 
         @Override
@@ -95,7 +101,8 @@ public class MaceratorRecipe implements Recipe<SimpleContainer> {
             }
 
             ItemStack output = buf.readItem();
-            return new MaceratorRecipe(id, output, inputs);
+            int maxProgress = buf.readInt();
+            return new MaceratorRecipe(id, output, inputs, maxProgress);
         }
 
         @Override
@@ -105,6 +112,7 @@ public class MaceratorRecipe implements Recipe<SimpleContainer> {
                 ing.toNetwork(buf);
             }
             buf.writeItemStack(recipe.getResultItem(), false);
+            buf.writeInt(recipe.maxProgress);
         }
 
         @Override

@@ -2,11 +2,11 @@
   "type": "tutorialmod:macerating",
   "ingredients": [
     {
-      "item": "minecraft:iron_ore"
+      "item": "tutorialmod:tin_ore"
     }
   ],
   "output":{
-    "item": "minecraft:raw_iron"
+    "item": "tutorialmod:raw_tin"
   },
-  "craft_time": 72
+  "craft_time": 36
 }

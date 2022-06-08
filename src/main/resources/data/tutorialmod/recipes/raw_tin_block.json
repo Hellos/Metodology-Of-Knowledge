@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tutorialmod:raw_tin"
+    }
+  },
+  "result": {
+    "item": "tutorialmod:raw_tin_block"
+  }
+}
