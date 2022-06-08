@@ -12,5 +12,5 @@ public class ModPlacedFeatures {
 
     public static final Holder<PlacedFeature> TIN_ORE_PLACED = PlacementUtils.register("tin_ore_placed",
             ModConfiguredFeatures.TIN_ORE, ModOrePlacement.commonOrePlacement(7, // VeinsPerChunk
-                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
+                    HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(-10), VerticalAnchor.belowTop(240))));
 }
