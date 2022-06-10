@@ -18,6 +18,7 @@ import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TuturoialMod.MOD_ID)
@@ -42,6 +43,8 @@ public class TuturoialMod
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::serverSetup);
+
+        GeckoLib.initialize();
         // Register the enqueueIMC method for modloading
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

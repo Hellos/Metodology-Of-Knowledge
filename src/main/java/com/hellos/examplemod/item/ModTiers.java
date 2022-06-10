@@ -6,6 +6,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeTier;
 
 public class ModTiers {
-    public static final ForgeTier INFINIUM = new ForgeTier(3,1812, 12f, 2f, 30,
-            BlockTags.NEEDS_DIAMOND_TOOL, () -> Ingredient.of(ModItems.INFINUM.get()));
+    public static final ForgeTier TIN = new ForgeTier(3,1812, 12f, 2f, 30,
+            BlockTags.NEEDS_DIAMOND_TOOL, () -> Ingredient.of(ModItems.TIN_INGOT.get()));
 }
