@@ -1,0 +1,12 @@
+{
+  "type": "tutorialmod:macerating",
+  "ingredients": [
+    {
+      "item": "tutorialmod:raw_cobalt"
+    }
+  ],
+  "output":{
+    "item": "tutorialmod:cobalt_dust"
+  },
+  "craft_time": 100
+}

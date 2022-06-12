@@ -15,5 +15,6 @@ public class ModOreGeneration {
 
         base.add(ModPlacedFeatures.TIN_ORE_PLACED);
         base.add(ModPlacedFeatures.COBALT_ORE_PLACED);
+        base.add(ModPlacedFeatures.ALUMINUM_ORE_PLACED);
     }
 }

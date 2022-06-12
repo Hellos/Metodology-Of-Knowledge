@@ -54,6 +54,14 @@ public class ModBlocks {
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(4.5f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)), ModCreativeModeTab.TUTORIAL_TAB);
 
+    public static final RegistryObject<Block> ALUMINUM_ORE = registerBlock("aluminum_ore",
+            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.0f, 6.0f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> DEEPSLATE_ALUMINUM_ORE = registerBlock("deepslate_aluminum_ore",
+            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(4.5f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)), ModCreativeModeTab.TUTORIAL_TAB);
+
     //INGOTS AND RAW VARIANTS OF BLOCKS
 
     public static final RegistryObject<Block> COBALT_BLOCK = registerBlock("cobalt_block",
@@ -62,7 +70,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> RAW_COBALT_BLOCK = registerBlock("raw_cobalt_block",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_BLUE)
-                    .strength(5.0f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.COPPER)), ModCreativeModeTab.TUTORIAL_TAB);
+                    .strength(5.0f, 6.0f).requiresCorrectToolForDrops().sound(new SoundType(3.0F, 0.5F, SoundEvents.DEEPSLATE_BREAK, SoundEvents.DEEPSLATE_STEP, SoundEvents.DEEPSLATE_PLACE, SoundEvents.DEEPSLATE_HIT, SoundEvents.DEEPSLATE_FALL))),
+            ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> TIN_BLOCK = registerBlock("tin_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
@@ -70,7 +79,17 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> RAW_TIN_BLOCK = registerBlock("raw_tin_block",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(5.0f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.COPPER)), ModCreativeModeTab.TUTORIAL_TAB);
+                    .strength(5.0f, 6.0f).requiresCorrectToolForDrops().sound(new SoundType(3.0F, 0.5F, SoundEvents.DEEPSLATE_BREAK, SoundEvents.DEEPSLATE_STEP, SoundEvents.DEEPSLATE_PLACE, SoundEvents.DEEPSLATE_HIT, SoundEvents.DEEPSLATE_FALL))),
+            ModCreativeModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> ALUMINUM_BLOCK = registerBlock("aluminum_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.0f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.COPPER)), ModCreativeModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> RAW_ALUMINUM_BLOCK = registerBlock("raw_aluminum_block",
+            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(5.0f, 6.0f).requiresCorrectToolForDrops().sound(new SoundType(3.0F, 0.5F, SoundEvents.DEEPSLATE_BREAK, SoundEvents.DEEPSLATE_STEP, SoundEvents.DEEPSLATE_PLACE, SoundEvents.DEEPSLATE_HIT, SoundEvents.DEEPSLATE_FALL))),
+            ModCreativeModeTab.TUTORIAL_TAB);
 
     //MACHINES
     public static final RegistryObject<Block> MACERATOR = registerBlock("macerator",

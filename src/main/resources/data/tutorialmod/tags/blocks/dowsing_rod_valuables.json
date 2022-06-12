@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    "tutorialmod:cobalt_ore",
+    "tutorialmod:deepslate_cobalt_ore",
+    "tutorialmod:tin_ore",
+    "tutorialmod:deepslate_tin_ore",
     "minecraft:redstone_ore",
     "minecraft:diamond_ore",
     "minecraft:iron_ore",

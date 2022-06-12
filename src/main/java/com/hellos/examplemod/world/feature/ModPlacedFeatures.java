@@ -17,4 +17,8 @@ public class ModPlacedFeatures {
     public static final Holder<PlacedFeature> COBALT_ORE_PLACED = PlacementUtils.register("cobalt_ore_placed",
             ModConfiguredFeatures.COBALT_ORE, ModOrePlacement.commonOrePlacement(3, // VeinsPerChunk
                     HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(-10), VerticalAnchor.belowTop(270))));
+
+    public static final Holder<PlacedFeature> ALUMINUM_ORE_PLACED = PlacementUtils.register("aluminum_ore_placed",
+            ModConfiguredFeatures.ALUMINUM_ORE, ModOrePlacement.commonOrePlacement(9, // VeinsPerChunk
+                    HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(-10), VerticalAnchor.belowTop(240))));
 }

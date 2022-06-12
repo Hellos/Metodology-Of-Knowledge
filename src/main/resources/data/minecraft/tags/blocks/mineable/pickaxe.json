@@ -1,10 +1,17 @@
 {
   "replace": false,
   "values": [
-    "tutorialmod:infinium_ore",
     "tutorialmod:tin_ore",
     "tutorialmod:deepslate_tin_ore",
-    "tutorialmod:infinium_block",
-    "tutorialmod:raw_tin_block"
+    "tutorialmod:raw_tin_block",
+    "tutorialmod:tin_block",
+    "tutorialmod:raw_cobalt_block",
+    "tutorialmod:cobalt_ore",
+    "tutorialmod:deepslate_cobalt_ore",
+    "tutorialmod:cobalt_block",
+    "tutorialmod:raw_aluminum_block",
+    "tutorialmod:aluminum_ore",
+    "tutorialmod:deepslate_aluminum_ore",
+    "tutorialmod:aluminum_block"
   ]
 }

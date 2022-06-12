@@ -33,9 +33,10 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, IEnergyStorage {
-    private int energyStored = 0;
+    private int energyStored = 256000;
     private int maxEnergyStored = 256000;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(2){
@@ -53,7 +54,6 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
 
     public MaceratorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlocksEntities.MACERATOR_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
-        this.energyStored = 256000;
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
@@ -174,7 +174,7 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
     }
 
     private static boolean hasEnergy(MaceratorBlockEntity entity){
-        return entity.energyStored != 0;
+        return entity.energyStored >  0;
     }
 
     private static boolean hasWaterInWaterSlot(MaceratorBlockEntity entity) {
@@ -196,7 +196,6 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
                 .getRecipeFor(MaceratorRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
-            TuturoialMod.LOGGER.error(entity.maxProgress);
             entity.itemHandler.extractItem(0,1, false);
             entity.itemHandler.setStackInSlot(1, new ItemStack(match.get().getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(1).getCount() + 2));
