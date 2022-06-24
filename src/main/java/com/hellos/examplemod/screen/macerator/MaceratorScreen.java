@@ -1,18 +1,24 @@
 package com.hellos.examplemod.screen.macerator;
 
-import com.hellos.examplemod.TuturoialMod;
+import com.google.common.collect.Lists;
+import com.hellos.examplemod.TutorialMod;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+
+import java.util.List;
 
 
 public class MaceratorScreen extends AbstractContainerScreen<MaceratorMenu> {
     private static final ResourceLocation TEXTRURE =
-            new ResourceLocation(TuturoialMod.MOD_ID, "textures/gui/macerator_gui.png");
+            new ResourceLocation(TutorialMod.MOD_ID, "textures/gui/macerator_gui.png");
 
     public MaceratorScreen(MaceratorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -25,11 +31,8 @@ public class MaceratorScreen extends AbstractContainerScreen<MaceratorMenu> {
         RenderSystem.setShaderTexture(0, TEXTRURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        ;
 
         this.blit(pPoseStack, x, y, 0 ,0, imageWidth, imageHeight);
-
-
 
         blit(pPoseStack, x + 149, y + 70 - menu.getScaledEnergy(), 177, 83- menu.getScaledEnergy(), 13, menu.getScaledEnergy());
 
@@ -47,5 +50,19 @@ public class MaceratorScreen extends AbstractContainerScreen<MaceratorMenu> {
         renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
         renderTooltip(pPoseStack, pMouseX, pMouseY);
+
+        if(isHovering(149, 16, 13, 53, pMouseX, pMouseY)){
+            List<Component> list = Lists.newArrayList();
+            MutableComponent component = new TranslatableComponent("block.tutorialmod.macerator.energy_stored").withStyle(ChatFormatting.WHITE);
+            list.add(component);
+            component = new TranslatableComponent("block.tutorialmod.macerator.energy_stored_info", (this.menu).getEnergy(),
+                    this.menu.getMaxEnergy()).withStyle(ChatFormatting.AQUA);
+            list.add(component);
+            renderComponentTooltip(pPoseStack, list, pMouseX, pMouseY);
+        }
+
+        if(isHovering(91,32,4,25, pMouseX, pMouseY)){
+            renderTooltip(pPoseStack, new TranslatableComponent("block.tutorialmod.macerator.progress", this.menu.getPercentage()), pMouseX, pMouseY);
+        }
     }
 }

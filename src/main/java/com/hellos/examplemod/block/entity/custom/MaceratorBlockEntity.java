@@ -1,6 +1,5 @@
 package com.hellos.examplemod.block.entity.custom;
 
-import com.hellos.examplemod.TuturoialMod;
 import com.hellos.examplemod.block.custom.MaceratorBlock;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
 import com.hellos.examplemod.recipe.MaceratorRecipe;
@@ -32,8 +31,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, IEnergyStorage {
     private int energyStored = 256000;
@@ -198,7 +195,7 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
         if(match.isPresent()) {
             entity.itemHandler.extractItem(0,1, false);
             entity.itemHandler.setStackInSlot(1, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(1).getCount() + 2));
+                    entity.itemHandler.getStackInSlot(1).getCount() + match.get().getResultItem().getCount()));
 
             entity.resetProgress();
         }
@@ -249,5 +246,6 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
         else
             return true;
     }
+
 }
 

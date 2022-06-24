@@ -2,13 +2,12 @@ package com.hellos.examplemod.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.TutorialMod;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -81,7 +80,7 @@ public class MaceratorRecipe implements Recipe<SimpleContainer> {
     public static class Serializer implements RecipeSerializer<MaceratorRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
-                new ResourceLocation(TuturoialMod.MOD_ID,"macerating");
+                new ResourceLocation(TutorialMod.MOD_ID,"macerating");
 
         @Override
         public MaceratorRecipe fromJson(ResourceLocation id, JsonObject json) {

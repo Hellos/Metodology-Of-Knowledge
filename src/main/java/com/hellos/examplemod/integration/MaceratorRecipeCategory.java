@@ -1,7 +1,7 @@
 package com.hellos.examplemod.integration;
 
 
-import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.TutorialMod;
 import com.hellos.examplemod.block.ModBlocks;
 import com.hellos.examplemod.recipe.MaceratorRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -20,9 +20,9 @@ import javax.annotation.Nonnull;
 
 public class MaceratorRecipeCategory implements IRecipeCategory<MaceratorRecipe> {
 
-    public final static ResourceLocation UID = new ResourceLocation(TuturoialMod.MOD_ID, "macerating");
+    public final static ResourceLocation UID = new ResourceLocation(TutorialMod.MOD_ID, "macerating");
     public final static ResourceLocation TEXTURE =
-            new ResourceLocation(TuturoialMod.MOD_ID, "textures/gui/macerator_gui.png");
+            new ResourceLocation(TutorialMod.MOD_ID, "textures/gui/macerator_gui.png");
 
     private final IDrawable background;
     private final IDrawable icon;

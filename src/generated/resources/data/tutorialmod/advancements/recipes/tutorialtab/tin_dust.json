@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tutorialmod:tin_dust"
+    ]
+  },
+  "criteria": {
+    "has_raw_tin_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tutorialmod:raw_tin_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tutorialmod:tin_dust"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_tin_block",
+      "has_the_recipe"
+    ]
+  ]
+}

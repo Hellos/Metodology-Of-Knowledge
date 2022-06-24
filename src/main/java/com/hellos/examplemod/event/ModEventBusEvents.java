@@ -1,7 +1,7 @@
 package com.hellos.examplemod.event;
 
 
-import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.TutorialMod;
 import com.hellos.examplemod.entity.armor.HellosArmorRenderer;
 import com.hellos.examplemod.item.custom.HellosArmorItem;
 import com.hellos.examplemod.recipe.MaceratorRecipe;
@@ -14,7 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
-@Mod.EventBusSubscriber(modid = TuturoialMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = TutorialMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event){

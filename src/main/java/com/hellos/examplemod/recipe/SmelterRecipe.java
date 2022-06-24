@@ -2,7 +2,7 @@ package com.hellos.examplemod.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.TutorialMod;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -69,7 +69,7 @@ public class SmelterRecipe implements Recipe<SimpleContainer> {
     public static class Serializer implements RecipeSerializer<SmelterRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID =
-                new ResourceLocation(TuturoialMod.MOD_ID,"smelting");
+                new ResourceLocation(TutorialMod.MOD_ID,"smelting");
 
         @Override
         public SmelterRecipe fromJson(ResourceLocation id, JsonObject json) {

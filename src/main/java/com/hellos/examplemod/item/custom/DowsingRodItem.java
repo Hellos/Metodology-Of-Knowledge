@@ -48,12 +48,11 @@ public class DowsingRodItem extends Item {
                     break;
                 }
             }
-
+            pContext.getPlayer().getCooldowns().addCooldown(this, 20);
             if(!foundBlock){
                 player.sendMessage(new TranslatableComponent("item.tutorialmod.dowsing_rod.no_valuables"), player.getUUID());
             }
         }
-        pContext.getLevel().destroyBlock(pContext.getClickedPos(), true);
         pContext.getItemInHand().hurtAndBreak(1, pContext.getPlayer(),
                 (player) -> player.broadcastBreakEvent(player.getUsedItemHand()));
 

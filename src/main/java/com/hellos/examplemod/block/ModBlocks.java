@@ -1,14 +1,11 @@
 package com.hellos.examplemod.block;
 
-import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.TutorialMod;
+import com.hellos.examplemod.block.custom.AssemblerBlock;
 import com.hellos.examplemod.block.custom.MaceratorBlock;
 import com.hellos.examplemod.block.custom.SmelterBlock;
-import com.hellos.examplemod.block.custom.SpeedyBlock;
 import com.hellos.examplemod.item.ModCreativeModeTab;
 import com.hellos.examplemod.item.ModItems;
-import com.mojang.blaze3d.vertex.Tesselator;
-import net.minecraft.Util;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -26,40 +23,38 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
 
 import java.util.function.Supplier;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, TuturoialMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.BLOCKS, TutorialMod.MOD_ID);
 
 
     //ORES
 
     public static final RegistryObject<Block> COBALT_ORE = registerBlock("cobalt_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new OreBlock(BlockBehaviour.Properties.of(ModMaterial.HARD)
                     .strength(3.0f, 6.0f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> DEEPSLATE_COBALT_ORE = registerBlock("deepslate_cobalt_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new OreBlock(BlockBehaviour.Properties.of(ModMaterial.HARD)
                     .strength(4.5f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> TIN_ORE = registerBlock("tin_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new OreBlock(BlockBehaviour.Properties.of(ModMaterial.EASY)
                     .strength(3.0f, 6.0f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> DEEPSLATE_TIN_ORE = registerBlock("deepslate_tin_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new OreBlock(BlockBehaviour.Properties.of(ModMaterial.EASY)
                     .strength(4.5f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> ALUMINUM_ORE = registerBlock("aluminum_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new OreBlock(BlockBehaviour.Properties.of(ModMaterial.EASY)
                     .strength(3.0f, 6.0f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> DEEPSLATE_ALUMINUM_ORE = registerBlock("deepslate_aluminum_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new OreBlock(BlockBehaviour.Properties.of(ModMaterial.EASY)
                     .strength(4.5f, 6.0f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)), ModCreativeModeTab.TUTORIAL_TAB);
 
     //INGOTS AND RAW VARIANTS OF BLOCKS
@@ -111,6 +106,11 @@ public class ModBlocks {
                     super.stepOn(pLevel, pPos, pState, pEntity);
                 }
             }, ModCreativeModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> ASSEMBLER_BLOCK = registerBlock("assembler_block",
+            () -> new AssemblerBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(new SoundType(3.0F, 0.5F, SoundEvents.NETHERITE_BLOCK_BREAK, SoundEvents.NETHERITE_BLOCK_STEP, SoundEvents.NETHERITE_BLOCK_PLACE, SoundEvents.NETHERITE_BLOCK_HIT, SoundEvents.NETHERITE_BLOCK_FALL))
+                    .strength(5f).requiresCorrectToolForDrops().noOcclusion()),
+            ModCreativeModeTab.TUTORIAL_TAB);
 
     //MISC
         public static final RegistryObject<Block> CUSTOM_GLASS = registerBlock("custom_glass",

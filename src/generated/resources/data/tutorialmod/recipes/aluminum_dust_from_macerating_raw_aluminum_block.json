@@ -1,0 +1,13 @@
+{
+  "type": "tutorialmod:macerating",
+  "ingredients": [
+    {
+      "item": "tutorialmod:raw_aluminum_block"
+    }
+  ],
+  "craft_time": 288,
+  "output": {
+    "item": "tutorialmod:aluminum_dust",
+    "count": 18
+  }
+}

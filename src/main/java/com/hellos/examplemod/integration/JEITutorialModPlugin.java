@@ -1,6 +1,6 @@
 package com.hellos.examplemod.integration;
 
-import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.TutorialMod;
 import com.hellos.examplemod.recipe.MaceratorRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -18,7 +18,7 @@ import java.util.Objects;
 public class JEITutorialModPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(TuturoialMod.MOD_ID, "jei_plugin");
+        return new ResourceLocation(TutorialMod.MOD_ID, "jei_plugin");
     }
 
     @Override

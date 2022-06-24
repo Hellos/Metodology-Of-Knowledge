@@ -1,7 +1,6 @@
 package com.hellos.examplemod.screen.smelter;
 
-import com.hellos.examplemod.TuturoialMod;
-import com.hellos.examplemod.block.entity.custom.SmelterBlockEntity;
+import com.hellos.examplemod.TutorialMod;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -14,7 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class SmelterScreen extends AbstractContainerScreen<SmelterMenu> {
     private static final ResourceLocation TEXTRURE =
-            new ResourceLocation(TuturoialMod.MOD_ID, "textures/gui/macerator_gui.png");
+            new ResourceLocation(TutorialMod.MOD_ID, "textures/gui/macerator_gui.png");
 
     public SmelterScreen(SmelterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);

@@ -1,6 +1,6 @@
 package com.hellos.examplemod.screen;
 
-import com.hellos.examplemod.TuturoialMod;
+import com.hellos.examplemod.TutorialMod;
 import com.hellos.examplemod.screen.macerator.MaceratorMenu;
 import com.hellos.examplemod.screen.smelter.SmelterMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -14,7 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.CONTAINERS, TuturoialMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.CONTAINERS, TutorialMod.MOD_ID);
 
     public static void register(IEventBus eventBus){
         MENUS.register(eventBus);

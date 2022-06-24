@@ -1,25 +1,17 @@
 package com.hellos.examplemod.item;
 
-import com.hellos.examplemod.TuturoialMod;
-import com.hellos.examplemod.item.custom.CoalCokeItem;
-import com.hellos.examplemod.item.custom.DowsingRodItem;
-import com.hellos.examplemod.item.custom.HellosArmorItem;
-import com.hellos.examplemod.item.custom.SuperMegaSwordItem;
+import com.hellos.examplemod.TutorialMod;
+import com.hellos.examplemod.item.custom.*;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.Nullable;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, TuturoialMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, TutorialMod.MOD_ID);
 
 
     //INGOTS, RAW, DUST VARIANTS
@@ -31,6 +23,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> TIN_INGOT = ITEMS.register("tin_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> TIN_DUST = ITEMS.register("tin_dust",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
 
     //COBALT
 
@@ -60,7 +56,10 @@ public class ModItems {
             () -> new DowsingRodItem(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB)).durability(64)));
 
     public static final RegistryObject<Item> INFINIUM_PICKAXE = ITEMS.register("infinium_pickaxe",
-            () -> new SuperMegaSwordItem(ModTiers.TIN, 2, 3, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB))) ;
+            () -> new SuperMegaSwordItem(ModTiers.TIN, 2, 3, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> ANALYTIC_PICKAXE = ITEMS.register("analytic_pickaxe",
+            () -> new AnalyticPickaxeItem(ModTiers.TIN, 2, 3, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
 
     //MISC
 
@@ -71,9 +70,7 @@ public class ModItems {
             () -> new CoalCokeItem(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
 
 
-
-
-
+    //Armor
 
     public static final RegistryObject<Item> HELLOS_BACKPACK = ITEMS.register("hellos_backpack",
             () -> new HellosArmorItem(ModArmorMaterials.TIN, EquipmentSlot.CHEST,

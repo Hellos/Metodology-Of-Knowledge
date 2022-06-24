@@ -57,6 +57,18 @@ public class MaceratorMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
+    public int getEnergy(){
+        return this.data.get(2);
+    }
+
+    public int getMaxEnergy(){
+        return this.data.get(3);
+    }
+
+    public int getPercentage(){
+        return (int)((double)this.data.get(0)/this.data.get(1)*100);
+    }
+
     public int getScaledEnergy(){
         int energyStored = this.data.get(2);
         int maxEnergyStored = this.data.get(3);

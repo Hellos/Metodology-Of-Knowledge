@@ -2,6 +2,7 @@
   "item.tutorialmod.infinium": "Infinium",
   "item.tutorialmod.raw_tin": "Raw Tin",
   "item.tutorialmod.tin_ingot": "Tin Ingot",
+  "item.tutorialmod.tin_dust": "Tin Dust",
   "item.tutorialmod.raw_cobalt": "Raw Cobalt",
   "item.tutorialmod.cobalt_ingot": "Cobalt Ingot",
   "item.tutorialmod.cobalt_dust": "Cobalt Dust",
@@ -32,6 +33,9 @@
   "block.tutorialmod.macerator": "Macerator",
   "block.tutorialmod.smelter": "Smelter",
   "block.tutorialmod.custom_glass": "Custom Glass",
+  "block.tutorialmod.macerator.energy_stored": "Energy stored:",
+  "block.tutorialmod.macerator.energy_stored_info": "%s/%s HE",
+  "block.tutorialmod.macerator.progress": "Progress: %s %",
 
   "block.tutorialmod.infinium_stairs": "Infinium Stairs",
   "block.tutorialmod.infinium_slab": "Infinium Slab",

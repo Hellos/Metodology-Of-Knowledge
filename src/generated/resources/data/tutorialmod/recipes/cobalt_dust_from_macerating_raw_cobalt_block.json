@@ -1,0 +1,13 @@
+{
+  "type": "tutorialmod:macerating",
+  "ingredients": [
+    {
+      "item": "tutorialmod:raw_cobalt_block"
+    }
+  ],
+  "craft_time": 576,
+  "output": {
+    "item": "tutorialmod:cobalt_dust",
+    "count": 18
+  }
+}

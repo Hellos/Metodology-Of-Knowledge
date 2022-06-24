@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "tutorialmod:cobalt_ore",
-    "tutorialmod:deepslate_cobalt_ore",
-    "tutorialmod:raw_cobalt_block",
-    "tutorialmod:cobalt_block"
-  ]
-}
