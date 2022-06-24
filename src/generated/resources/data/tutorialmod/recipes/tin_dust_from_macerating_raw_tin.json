@@ -1,0 +1,13 @@
+{
+  "type": "tutorialmod:macerating",
+  "ingredients": [
+    {
+      "item": "tutorialmod:raw_tin"
+    }
+  ],
+  "craft_time": 36,
+  "output": {
+    "item": "tutorialmod:tin_dust",
+    "count": 2
+  }
+}

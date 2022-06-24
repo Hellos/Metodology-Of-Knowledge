@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "tutorialmod:cobalt_ore",
+    "tutorialmod:deepslate_cobalt_ore",
+    "tutorialmod:tin_ore",
+    "tutorialmod:deepslate_tin_ore",
+    "tutorialmod:aluminum_ore",
+    "tutorialmod:deepslate_aluminum_ore",
+    "tutorialmod:cobalt_block",
+    "tutorialmod:raw_cobalt_block",
+    "tutorialmod:tin_block",
+    "tutorialmod:raw_tin_block",
+    "tutorialmod:aluminum_block",
+    "tutorialmod:raw_aluminum_block"
+  ]
+}

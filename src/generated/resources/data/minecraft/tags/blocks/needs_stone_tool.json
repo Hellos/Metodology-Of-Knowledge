@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tutorialmod:tin_ore",
+    "tutorialmod:deepslate_tin_ore",
+    "tutorialmod:aluminum_ore",
+    "tutorialmod:deepslate_aluminum_ore"
+  ]
+}

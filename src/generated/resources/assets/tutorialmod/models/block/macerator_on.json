@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "tutorialmod:block/macerator_bottom",
+    "up": "tutorialmod:block/macerator_top",
+    "north": "tutorialmod:block/macerator_face_on",
+    "south": "tutorialmod:block/macerator_back",
+    "east": "tutorialmod:block/macerator_lside",
+    "west": "tutorialmod:block/macerator_rside",
+    "particle": "tutorialmod:block/macerator_lside"
+  }
+}
