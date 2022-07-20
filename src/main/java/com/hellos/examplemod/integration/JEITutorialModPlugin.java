@@ -2,6 +2,7 @@ package com.hellos.examplemod.integration;
 
 import com.hellos.examplemod.TutorialMod;
 import com.hellos.examplemod.recipe.MaceratorRecipe;
+import com.hellos.examplemod.recipe.SmelterRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
@@ -10,6 +11,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
+import org.apache.http.cookie.SM;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,12 +27,16 @@ public class JEITutorialModPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new
                 MaceratorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new
+                SmelterRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipeManager = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-        List<MaceratorRecipe> recipeList = recipeManager.getAllRecipesFor(MaceratorRecipe.Type.INSTANCE);
-        registration.addRecipes(new RecipeType<>(MaceratorRecipeCategory.UID, MaceratorRecipe.class), recipeList);
+        List<MaceratorRecipe> maceratorRecipeList = recipeManager.getAllRecipesFor(MaceratorRecipe.Type.INSTANCE);
+        registration.addRecipes(new RecipeType<>(MaceratorRecipeCategory.UID, MaceratorRecipe.class), maceratorRecipeList);
+        List<SmelterRecipe> smelterRecipeList = recipeManager.getAllRecipesFor(SmelterRecipe.Type.INSTANCE);
+        registration.addRecipes(new RecipeType<>(SmelterRecipeCategory.UID, SmelterRecipe.class), smelterRecipeList);
     }
 }

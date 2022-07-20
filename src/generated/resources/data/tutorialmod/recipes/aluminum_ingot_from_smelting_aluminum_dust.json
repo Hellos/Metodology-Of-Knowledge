@@ -1,0 +1,11 @@
+{
+  "type": "tutorialmod:smelting",
+  "ingredients": [
+    {
+      "item": "tutorialmod:aluminum_dust"
+    }
+  ],
+  "output": {
+    "item": "tutorialmod:aluminum_ingot"
+  }
+}

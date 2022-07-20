@@ -4,8 +4,10 @@ import com.hellos.examplemod.block.ModBlocks;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
 import com.hellos.examplemod.item.ModItems;
 import com.hellos.examplemod.recipe.ModRecipes;
-import com.hellos.examplemod.screen.macerator.MaceratorScreen;
 import com.hellos.examplemod.screen.ModMenuTypes;
+import com.hellos.examplemod.screen.energy_storage.EnergyStorageMenu;
+import com.hellos.examplemod.screen.energy_storage.EnergyStorageScreen;
+import com.hellos.examplemod.screen.macerator.MaceratorScreen;
 import com.hellos.examplemod.screen.smelter.SmelterScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -14,7 +16,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.*;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,6 +59,7 @@ public class TutorialMod
 
         MenuScreens.register(ModMenuTypes.MACERATOR_MENU.get(), MaceratorScreen::new);
         MenuScreens.register(ModMenuTypes.SMELTER_MENU.get(), SmelterScreen::new);
+        MenuScreens.register(ModMenuTypes.ENERGY_STORAGE_MENU.get(), EnergyStorageScreen::new);
     }
 
     private void serverSetup(FMLDedicatedServerSetupEvent event){

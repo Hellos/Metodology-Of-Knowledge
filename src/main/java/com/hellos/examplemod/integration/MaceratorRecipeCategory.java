@@ -22,13 +22,13 @@ public class MaceratorRecipeCategory implements IRecipeCategory<MaceratorRecipe>
 
     public final static ResourceLocation UID = new ResourceLocation(TutorialMod.MOD_ID, "macerating");
     public final static ResourceLocation TEXTURE =
-            new ResourceLocation(TutorialMod.MOD_ID, "textures/gui/macerator_gui.png");
+            new ResourceLocation(TutorialMod.MOD_ID, "textures/gui/macerator_jei_integration.png");
 
     private final IDrawable background;
     private final IDrawable icon;
 
     public MaceratorRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 176, 85);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 176, 87);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.MACERATOR.get()));
     }
 
@@ -60,8 +60,8 @@ public class MaceratorRecipeCategory implements IRecipeCategory<MaceratorRecipe>
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull MaceratorRecipe recipe, @Nonnull IFocusGroup focusGroup) {
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 84, 11).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 84, 8).addIngredients(recipe.getIngredients().get(0));
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 84, 63).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 84, 61).addItemStack(recipe.getResultItem());
     }
 }

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "axis=x,turned_on=false": {
+      "model": "tutorialmod:block/energy_pipe_block_input",
+      "x": 90
+    },
+    "axis=y,facing=north,turned_on=false": {
+      "model": "tutorialmod:block/energy_pipe_block_input"
+    },
+    "axis=y,facing=east,turned_on=false": {
+      "model": "tutorialmod:block/energy_pipe_block_input",
+      "y": 90
+    },
+    "axis=y,facing=south,turned_on=false": {
+      "model": "tutorialmod:block/energy_pipe_block_input",
+      "y": 180
+    },
+    "axis=y,facing=west,turned_on=false": {
+      "model": "tutorialmod:block/energy_pipe_block_input",
+      "y": 270
+    },
+    "axis=z,turned_on=false": {
+      "model": "tutorialmod:block/energy_pipe_block_input",
+      "y": 90,
+      "x": 90
+    },
+    "axis=x,turned_on=true": {
+      "model": "tutorialmod:block/energy_pipe_block_output",
+      "x": 90
+    },
+    "axis=y,facing=north,turned_on=true": {
+      "model": "tutorialmod:block/energy_pipe_block_output"
+    },
+    "axis=y,facing=east,turned_on=true": {
+      "model": "tutorialmod:block/energy_pipe_block_output",
+      "y": 90
+    },
+    "axis=y,facing=south,turned_on=true": {
+      "model": "tutorialmod:block/energy_pipe_block_output",
+      "y": 180
+    },
+    "axis=y,facing=west,turned_on=true": {
+      "model": "tutorialmod:block/energy_pipe_block_output",
+      "y": 270
+    },
+    "axis=z,turned_on=true": {
+      "model": "tutorialmod:block/energy_pipe_block_output",
+      "y": 90,
+      "x": 90
+    }
+  }
+}

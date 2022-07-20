@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tutorialmod:block/energy_storage_block"
+    },
+    "facing=north": {
+      "model": "tutorialmod:block/energy_storage_block",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "tutorialmod:block/energy_storage_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "tutorialmod:block/energy_storage_block",
+      "y": 270
+    }
+  }
+}

@@ -2,6 +2,7 @@ package com.hellos.examplemod.block.entity.custom;
 
 import com.hellos.examplemod.block.custom.MaceratorBlock;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
+import com.hellos.examplemod.block.entity.util.MkEnergyStorage;
 import com.hellos.examplemod.recipe.MaceratorRecipe;
 import com.hellos.examplemod.screen.macerator.MaceratorMenu;
 import net.minecraft.core.BlockPos;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -32,10 +34,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
-public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, IEnergyStorage {
-    private int energyStored = 256000;
-    private int maxEnergyStored = 256000;
-
+public class MaceratorBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2){
         @Override
         protected void onContentsChanged(int slot) {
@@ -45,19 +44,26 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
+    public final MkEnergyStorage energyStorage;
+    private int capacity = 256000, maxRecieve = 64;
+    private LazyOptional<MkEnergyStorage> energy;
+
+
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 72;
 
     public MaceratorBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlocksEntities.MACERATOR_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
+        this.energyStorage = createEnergyStorage();
+        this.energy = LazyOptional.of(() -> this.energyStorage);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
                     case 0: return MaceratorBlockEntity.this.progress;
                     case 1: return MaceratorBlockEntity.this.maxProgress;
-                    case 2: return MaceratorBlockEntity.this.energyStored;
-                    case 3: return MaceratorBlockEntity.this.maxEnergyStored;
+                    case 2: return MaceratorBlockEntity.this.getEnergy();
+                    case 3: return MaceratorBlockEntity.this.energyStorage.getMaxEnergyStored();
                     default: return 0;
                 }
             }
@@ -66,8 +72,8 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
                 switch(index) {
                     case 0: MaceratorBlockEntity.this.progress = value; break;
                     case 1: MaceratorBlockEntity.this.maxProgress = value; break;
-                    case 2: MaceratorBlockEntity.this.energyStored = value; break;
-                    case 3: MaceratorBlockEntity.this.maxEnergyStored = value; break;
+                    case 2: MaceratorBlockEntity.this.energyStorage.setEnergy(value); break;
+                    case 3: MaceratorBlockEntity.this.energyStorage.setMaxEnergy(value); break;
                 }
             }
 
@@ -94,7 +100,9 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return lazyItemHandler.cast();
         }
-
+        if(cap == CapabilityEnergy.ENERGY){
+            return this.energy.cast();
+        }
         return super.getCapability(cap, side);
     }
 
@@ -108,13 +116,14 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
     public void invalidateCaps()  {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        this.energy.invalidate();
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("macerator.progress", progress);
-        tag.putInt("macerator.energy", energyStored);
+        tag.putInt("macerator.energy", getEnergy());
         super.saveAdditional(tag);
     }
 
@@ -123,7 +132,7 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         progress = nbt.getInt("macerator.progress");
-        energyStored = nbt.getInt("macerator.energy");
+        this.energyStorage.setEnergy(nbt.getInt("macerator.energy"));
     }
 
     public void drops() {
@@ -138,7 +147,7 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, MaceratorBlockEntity pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasEnergy(pBlockEntity)) {
             pBlockEntity.progress++;
-            pBlockEntity.energyStored-=32;
+            pBlockEntity.energyStorage.setEnergy(pBlockEntity.getEnergy()-32);
             pLevel.setBlock(pPos, pState.setValue(MaceratorBlock.TURNED_ON, Boolean.TRUE), 3);
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.progress > pBlockEntity.maxProgress) {
@@ -171,7 +180,7 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
     }
 
     private static boolean hasEnergy(MaceratorBlockEntity entity){
-        return entity.energyStored >  0;
+        return entity.getEnergy() >  0;
     }
 
     private static boolean hasWaterInWaterSlot(MaceratorBlockEntity entity) {
@@ -213,38 +222,12 @@ public class MaceratorBlockEntity extends BlockEntity implements MenuProvider, I
         return inventory.getItem(1).getMaxStackSize() > inventory.getItem(1).getCount() + 1;
     }
 
-    @Override
-    public int receiveEnergy(int maxReceive, boolean simulate) {
-        return 0;
+    private MkEnergyStorage createEnergyStorage(){
+        return new MkEnergyStorage(this, capacity, this.maxRecieve, 0, 0);
     }
 
-    @Override
-    public int extractEnergy(int maxExtract, boolean simulate) {
-        return 0;
-    }
-
-    @Override
-    public int getEnergyStored() {
-        return energyStored;
-    }
-
-    @Override
-    public int getMaxEnergyStored() {
-        return maxEnergyStored;
-    }
-
-    @Override
-    public boolean canExtract() {
-        return false;
-    }
-
-    @Override
-    public boolean canReceive() {
-        if(energyStored > maxEnergyStored){
-            return false;
-        }
-        else
-            return true;
+    public int getEnergy(){
+        return this.energyStorage.getEnergyStored();
     }
 
 }

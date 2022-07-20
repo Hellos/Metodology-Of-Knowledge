@@ -3,7 +3,8 @@ package com.hellos.examplemod.event;
 
 import com.hellos.examplemod.TutorialMod;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
-import com.hellos.examplemod.block.entity.client.AssemblerBlockRenderer;
+//import com.hellos.examplemod.block.entity.client.AssemblerBlockRenderer;
+import com.hellos.examplemod.block.entity.client.EnergyStorageBlockRenderer;
 import com.hellos.examplemod.entity.armor.HellosArmorRenderer;
 import com.hellos.examplemod.item.custom.HellosArmorItem;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,6 +22,7 @@ public class ModEventClientBusEvents {
 
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event){
-        event.registerBlockEntityRenderer(ModBlocksEntities.ASSEMBLER_BLOCK_ENTITY.get(), AssemblerBlockRenderer::new);
+//        event.registerBlockEntityRenderer(ModBlocksEntities.ASSEMBLER_BLOCK_ENTITY.get(), AssemblerBlockRenderer::new);
+        event.registerBlockEntityRenderer(ModBlocksEntities.ENERGY_STORAGE_BLOCK_ENTITY.get(), EnergyStorageBlockRenderer::new);
     }
 }

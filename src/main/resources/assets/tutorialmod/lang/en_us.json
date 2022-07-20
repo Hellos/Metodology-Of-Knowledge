@@ -15,6 +15,11 @@
   "item.tutorialmod.cucumber": "Cucumber",
   "item.tutorialmod.infinium_pickaxe": "Infinium Pickaxe",
 
+  "item.tutorialmod.custom_helmet": "Custom Helmet",
+  "item.tutorialmod.custom_chestplate": "Custom Chestplate",
+  "item.tutorialmod.custom_leggins": "Custom Leggins",
+  "item.tutorialmod.custom_boots": "Custom Boots",
+
   "block.tutorialmod.infinium_block": "Infinium Block",
   "block.tutorialmod.infinium_ore": "Infinium Ore",
   "block.tutorialmod.cobalt_ore": "Cobalt Ore",
@@ -33,9 +38,11 @@
   "block.tutorialmod.macerator": "Macerator",
   "block.tutorialmod.smelter": "Smelter",
   "block.tutorialmod.custom_glass": "Custom Glass",
-  "block.tutorialmod.macerator.energy_stored": "Energy stored:",
-  "block.tutorialmod.macerator.energy_stored_info": "%s/%s HE",
-  "block.tutorialmod.macerator.progress": "Progress: %s %",
+
+
+  "block.tutorialmod.util.energy_stored": "Energy stored:",
+  "block.tutorialmod.util.energy_stored_info": "%s/%s HE",
+  "block.tutorialmod.util.progress": "Progress: %s%%",
 
   "block.tutorialmod.infinium_stairs": "Infinium Stairs",
   "block.tutorialmod.infinium_slab": "Infinium Slab",
@@ -44,6 +51,8 @@
   "block.tutorialmod.infinium_wall": "Infinium Wall",
 
   "itemGroup.tutorialtab": "§9Hellos Mod",
+
+  "block.tutorialmod.energy_storage.inv_name": "Inv",
 
   "item.tutorialmod.dowsing_rod.no_valuables": "No valuables found!",
 

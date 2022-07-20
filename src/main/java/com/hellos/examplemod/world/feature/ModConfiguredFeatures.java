@@ -18,7 +18,7 @@ public class ModConfiguredFeatures {
     );
 
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> TIN_ORE = FeatureUtils.register("tin_ore",
-            Feature.ORE, new OreConfiguration(OVERWORLD_TIN_ORES, 9));
+            Feature.ORE, new OreConfiguration(OVERWORLD_TIN_ORES, 10));
 
     public static final List<OreConfiguration.TargetBlockState> OVERWORLD_COBALT_ORES = List.of(
             OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.COBALT_ORE.get().defaultBlockState()),
@@ -26,7 +26,7 @@ public class ModConfiguredFeatures {
     );
 
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> COBALT_ORE = FeatureUtils.register("cobalt_ore",
-            Feature.ORE, new OreConfiguration(OVERWORLD_COBALT_ORES, 9));
+            Feature.ORE, new OreConfiguration(OVERWORLD_COBALT_ORES, 3));
 
     public static final List<OreConfiguration.TargetBlockState> OVERWORLD_ALUMINUM_ORES = List.of(
             OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.ALUMINUM_ORE.get().defaultBlockState()),

@@ -1,0 +1,11 @@
+{
+  "type": "tutorialmod:smelting",
+  "ingredients": [
+    {
+      "item": "tutorialmod:deepslate_cobalt_ore"
+    }
+  ],
+  "output": {
+    "item": "tutorialmod:cobalt_ingot"
+  }
+}

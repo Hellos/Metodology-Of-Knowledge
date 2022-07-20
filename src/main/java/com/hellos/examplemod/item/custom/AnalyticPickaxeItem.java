@@ -29,14 +29,11 @@ public class AnalyticPickaxeItem extends PickaxeItem {
                 if (isValuableBlock(blockBelow)) {
                     outputValuableCoordinates(posClicked.below(i), player, blockBelow);
                     foundBlock = true;
-                    if (player.isOnGround())
-                        player.jumpFromGround();
-                    break;
                 }
             }
-            pContext.getPlayer().getCooldowns().addCooldown(this, 20);
+            pContext.getPlayer().getCooldowns().addCooldown(this, 20*60);
             if (!foundBlock) {
-                player.sendMessage(new TranslatableComponent("item.tutorialmod.dowsing_rod.no_valuables"), player.getUUID());
+                player.sendMessage(new TranslatableComponent("item.tutorialmod.analytic_pickaxe.no_valuables"), player.getUUID());
             }
         }
         pContext.getItemInHand().hurtAndBreak(1, pContext.getPlayer(),
@@ -49,8 +46,6 @@ public class AnalyticPickaxeItem extends PickaxeItem {
     private void outputValuableCoordinates(BlockPos blockPos, Player player, Block blockBelow){
         player.sendMessage(new TextComponent("Found " + blockBelow.asItem().getRegistryName().toString() + " at " +
                 "(" + blockPos.getX() + "," + blockPos.getY() +"," + blockPos.getZ() + ")"), player.getUUID());
-
-
     }
 
     private boolean isValuableBlock(Block block){

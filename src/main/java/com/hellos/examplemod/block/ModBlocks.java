@@ -1,9 +1,7 @@
 package com.hellos.examplemod.block;
 
 import com.hellos.examplemod.TutorialMod;
-import com.hellos.examplemod.block.custom.AssemblerBlock;
-import com.hellos.examplemod.block.custom.MaceratorBlock;
-import com.hellos.examplemod.block.custom.SmelterBlock;
+import com.hellos.examplemod.block.custom.*;
 import com.hellos.examplemod.item.ModCreativeModeTab;
 import com.hellos.examplemod.item.ModItems;
 import net.minecraft.core.BlockPos;
@@ -14,7 +12,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.GlassBlock;
+import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -107,58 +108,33 @@ public class ModBlocks {
                 }
             }, ModCreativeModeTab.TUTORIAL_TAB);
 
-    public static final RegistryObject<Block> ASSEMBLER_BLOCK = registerBlock("assembler_block",
-            () -> new AssemblerBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(new SoundType(3.0F, 0.5F, SoundEvents.NETHERITE_BLOCK_BREAK, SoundEvents.NETHERITE_BLOCK_STEP, SoundEvents.NETHERITE_BLOCK_PLACE, SoundEvents.NETHERITE_BLOCK_HIT, SoundEvents.NETHERITE_BLOCK_FALL))
+    public static final RegistryObject<Block> ENERGY_STORAGE_BLOCK = registerBlockWithoutBlockItem("energy_storage_block",
+            () -> new EnergyStorageBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(new SoundType(3.0F, 0.5F, SoundEvents.NETHERITE_BLOCK_BREAK, SoundEvents.NETHERITE_BLOCK_STEP, SoundEvents.NETHERITE_BLOCK_PLACE, SoundEvents.NETHERITE_BLOCK_HIT, SoundEvents.NETHERITE_BLOCK_FALL))
                     .strength(5f).requiresCorrectToolForDrops().noOcclusion()),
             ModCreativeModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> ENERGY_PIPE_BLOCK = registerBlock("energy_pipe_block",
+            () -> new EnergyPipeBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(new SoundType(3.0F, 0.5F, SoundEvents.NETHERITE_BLOCK_BREAK, SoundEvents.NETHERITE_BLOCK_STEP, SoundEvents.NETHERITE_BLOCK_PLACE, SoundEvents.NETHERITE_BLOCK_HIT, SoundEvents.NETHERITE_BLOCK_FALL))
+                    .strength(5f).requiresCorrectToolForDrops().noOcclusion()),
+            ModCreativeModeTab.TUTORIAL_TAB);
+
 
     //MISC
         public static final RegistryObject<Block> CUSTOM_GLASS = registerBlock("custom_glass",
             () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).noOcclusion().sound(SoundType.GLASS)
                     .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
 
-    //UNUSED CODE
 
-//    public static final RegistryObject<Block> SPEEDY_BLOCK = registerBlock("speedy_block",
-//            () -> new SpeedyBlock(BlockBehaviour.Properties.of(Material.METAL)
-//                    .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
-//
-//    public static final RegistryObject<Block> INFINIUM_STAIRS = registerBlock("infinium_stairs",
-//            () -> new StairBlock(() -> ModBlocks.INFINUM_BLOCK.get().defaultBlockState(),
-//                    BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()),
-//                    ModCreativeModeTab.TUTORIAL_TAB);
-//
-//    public static final RegistryObject<Block> INFINUM_SLAB = registerBlock("infinium_slab",
-//            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.METAL)
-//                    .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
-//
-//    public static final RegistryObject<Block> INFINUM_FENCE = registerBlock("infinium_fence",
-//            () -> new FenceBlock(BlockBehaviour.Properties.of(Material.METAL)
-//                    .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
-//
-//    public static final RegistryObject<Block> INFINUM_FENCE_GATE = registerBlock("infinium_fence_gate",
-//            () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.METAL)
-//                    .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
-//
-//    public static final RegistryObject<Block> INFINUM_WALL = registerBlock("infinium_wall",
-//            () -> new WallBlock(BlockBehaviour.Properties.of(Material.METAL)
-//                    .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
-//
-//    public static final RegistryObject<Block> INFINUM_BLOCK = registerBlock("infinium_block",
-//            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.AMETHYST)
-//                    .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
-//
-//    public static final RegistryObject<Block> INFINUM_ORE = registerBlock("infinium_ore",
-//            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-//                    .strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
-//
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab);
         return toReturn;
     }
 
-
+    private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block, CreativeModeTab tab){
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        return toReturn;
+    }
 
 
     private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab){

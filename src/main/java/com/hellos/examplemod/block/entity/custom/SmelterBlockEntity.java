@@ -2,6 +2,7 @@ package com.hellos.examplemod.block.entity.custom;
 
 import com.hellos.examplemod.block.custom.SmelterBlock;
 import com.hellos.examplemod.block.entity.ModBlocksEntities;
+import com.hellos.examplemod.block.entity.util.MkEnergyStorage;
 import com.hellos.examplemod.recipe.SmelterRecipe;
 import com.hellos.examplemod.screen.smelter.SmelterMenu;
 import net.minecraft.core.BlockPos;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -32,9 +34,11 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
-public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEnergyStorage {
-    private int energyStored = 0;
-    private int maxEnergyStored = 256000;
+public class SmelterBlockEntity extends BlockEntity implements MenuProvider {
+
+    public final MkEnergyStorage energyStorage;
+    private int capacity = 256000, maxRecieve = 64;
+    private LazyOptional<MkEnergyStorage> energy;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(2){
         @Override
@@ -51,14 +55,15 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
 
     public SmelterBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlocksEntities.SMELTER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
-        this.energyStored = 256000;
+        this.energyStorage = createEnergyStorage();
+        this.energy = LazyOptional.of(() -> this.energyStorage);
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
                     case 0: return SmelterBlockEntity.this.progress;
                     case 1: return SmelterBlockEntity.this.maxProgress;
-                    case 2: return SmelterBlockEntity.this.energyStored;
-                    case 3: return SmelterBlockEntity.this.maxEnergyStored;
+                    case 2: return SmelterBlockEntity.this.getEnergy();
+                    case 3: return SmelterBlockEntity.this.energyStorage.getMaxEnergyStored();
                     default: return 0;
                 }
             }
@@ -67,8 +72,8 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
                 switch(index) {
                     case 0: SmelterBlockEntity.this.progress = value; break;
                     case 1: SmelterBlockEntity.this.maxProgress = value; break;
-                    case 2: SmelterBlockEntity.this.energyStored = value; break;
-                    case 3: SmelterBlockEntity.this.maxEnergyStored = value; break;
+                    case 2: SmelterBlockEntity.this.energyStorage.setEnergy(value); break;
+                    case 3: SmelterBlockEntity.this.energyStorage.setMaxEnergy(value); break;
                 }
             }
 
@@ -95,7 +100,9 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return lazyItemHandler.cast();
         }
-
+        if(cap == CapabilityEnergy.ENERGY){
+            return this.energy.cast();
+        }
         return super.getCapability(cap, side);
     }
 
@@ -109,13 +116,14 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
     public void invalidateCaps()  {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        this.energy.invalidate();
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("smelter.progress", progress);
-        tag.putInt("smelter.energy", energyStored);
+        tag.putInt("smelter.energy", getEnergy());
         super.saveAdditional(tag);
     }
 
@@ -124,7 +132,7 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         progress = nbt.getInt("smelter.progress");
-        energyStored = nbt.getInt("smelter.energy");
+        this.energyStorage.setEnergy(nbt.getInt("smelter.energy"));
     }
 
     public void drops() {
@@ -139,7 +147,7 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, SmelterBlockEntity pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasEnergy(pBlockEntity)) {
             pBlockEntity.progress++;
-            pBlockEntity.energyStored-=32;
+            pBlockEntity.energyStorage.setEnergy(pBlockEntity.getEnergy()-32);
             pLevel.setBlock(pPos, pState.setValue(SmelterBlock.TURNED_ON, Boolean.TRUE), 3);
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.progress > pBlockEntity.maxProgress) {
@@ -168,7 +176,7 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
     }
 
     private static boolean hasEnergy(SmelterBlockEntity entity){
-        return entity.energyStored != 0;
+        return entity.getEnergy() >  0;
     }
 
     private static boolean hasWaterInWaterSlot(SmelterBlockEntity entity) {
@@ -210,38 +218,12 @@ public class SmelterBlockEntity extends BlockEntity implements MenuProvider, IEn
         return inventory.getItem(1).getMaxStackSize() > inventory.getItem(1).getCount();
     }
 
-    @Override
-    public int receiveEnergy(int maxReceive, boolean simulate) {
-        return 0;
+    private MkEnergyStorage createEnergyStorage(){
+        return new MkEnergyStorage(this, capacity, this.maxRecieve, 0, 0);
     }
 
-    @Override
-    public int extractEnergy(int maxExtract, boolean simulate) {
-        return 0;
-    }
-
-    @Override
-    public int getEnergyStored() {
-        return energyStored;
-    }
-
-    @Override
-    public int getMaxEnergyStored() {
-        return maxEnergyStored;
-    }
-
-    @Override
-    public boolean canExtract() {
-        return false;
-    }
-
-    @Override
-    public boolean canReceive() {
-        if(energyStored > maxEnergyStored){
-            return false;
-        }
-        else
-            return true;
+    public int getEnergy(){
+        return this.energyStorage.getEnergyStored();
     }
 }
 

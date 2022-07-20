@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_aluminum_block": {
+    "has_aluminum_ore": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "tutorialmod:aluminum_block"
+              "tutorialmod:aluminum_ore"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_aluminum_block",
+      "has_aluminum_ore",
       "has_the_recipe"
     ]
   ]

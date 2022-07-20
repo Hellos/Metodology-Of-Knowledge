@@ -63,6 +63,18 @@ public class SmelterMenu extends AbstractContainerMenu {
         return maxEnergyStored != 0 && energyStored != 0 ? energyStored * energyBufferSize / maxEnergyStored : 0;
     }
 
+    public int getEnergy(){
+        return this.data.get(2);
+    }
+
+    public int getMaxEnergy(){
+        return this.data.get(3);
+    }
+
+    public int getPercentage(){
+        return (int)((double)this.data.get(0)/this.data.get(1)*100);
+    }
+
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;

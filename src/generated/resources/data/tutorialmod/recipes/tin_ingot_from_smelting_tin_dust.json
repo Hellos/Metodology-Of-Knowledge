@@ -1,0 +1,11 @@
+{
+  "type": "tutorialmod:smelting",
+  "ingredients": [
+    {
+      "item": "tutorialmod:tin_dust"
+    }
+  ],
+  "output": {
+    "item": "tutorialmod:tin_ingot"
+  }
+}

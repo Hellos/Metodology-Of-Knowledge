@@ -1,8 +1,10 @@
 package com.hellos.examplemod.item;
 
 import com.hellos.examplemod.TutorialMod;
+import com.hellos.examplemod.block.ModBlocks;
 import com.hellos.examplemod.item.custom.*;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -55,9 +57,6 @@ public class ModItems {
     public static final RegistryObject<Item> DOWSING_ROD = ITEMS.register("dowsing_rod",
             () -> new DowsingRodItem(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB)).durability(64)));
 
-    public static final RegistryObject<Item> INFINIUM_PICKAXE = ITEMS.register("infinium_pickaxe",
-            () -> new SuperMegaSwordItem(ModTiers.TIN, 2, 3, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
-
     public static final RegistryObject<Item> ANALYTIC_PICKAXE = ITEMS.register("analytic_pickaxe",
             () -> new AnalyticPickaxeItem(ModTiers.TIN, 2, 3, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
 
@@ -69,19 +68,32 @@ public class ModItems {
     public static final RegistryObject<Item> COAL_COKE = ITEMS.register("coal_coke",
             () -> new CoalCokeItem(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
 
+    public static final RegistryObject<Item> ENERGY_STORAGE_BLOCK_ITEM = ITEMS.register("energy_storage_block",
+            () -> new EnergyStorageBlockItem(ModBlocks.ENERGY_STORAGE_BLOCK.get() ,new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
+
 
     //Armor
 
-    public static final RegistryObject<Item> HELLOS_BACKPACK = ITEMS.register("hellos_backpack",
-            () -> new HellosArmorItem(ModArmorMaterials.TIN, EquipmentSlot.CHEST,
+    public static final RegistryObject<Item> CUSTOM_HELMET = ITEMS.register("custom_helmet",
+            () -> new ArmorItem(ModArmorMaterials.TIN, EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
 
-    //UNUSED CODE
-//    public static final RegistryObject<Item> INFINUM = ITEMS.register("infinium",
-//            () -> new Item(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
-//
-//    public static final RegistryObject<Item> RAW_INFINUM = ITEMS.register("raw_infinium",
-//            () -> new Item(new Item.Properties().tab((ModCreativeModeTab.TUTORIAL_TAB))));
+    public static final RegistryObject<Item> CUSTOM_CHESTPLATE = ITEMS.register("custom_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.TIN, EquipmentSlot.CHEST,
+                    new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> CUSTOM_LEGGINS = ITEMS.register("custom_leggins",
+            () -> new ArmorItem(ModArmorMaterials.TIN, EquipmentSlot.LEGS,
+                    new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> CUSTOM_BOOTS = ITEMS.register("custom_boots",
+            () -> new ArmorItem(ModArmorMaterials.TIN, EquipmentSlot.FEET,
+                    new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
+//    public static final RegistryObject<Item> HELLOS_BACKPACK = ITEMS.register("hellos_backpack",
+//            () -> new HellosArmorItem(ModArmorMaterials.TIN, EquipmentSlot.CHEST,
+//                    new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
 
     public static void regiser(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -1,7 +1,6 @@
 package com.hellos.examplemod.entity.armor;
 
 import com.hellos.examplemod.item.custom.HellosArmorItem;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 public class HellosArmorRenderer extends GeoArmorRenderer<HellosArmorItem> {

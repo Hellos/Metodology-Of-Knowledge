@@ -1,6 +1,7 @@
 package com.hellos.examplemod.screen;
 
 import com.hellos.examplemod.TutorialMod;
+import com.hellos.examplemod.screen.energy_storage.EnergyStorageMenu;
 import com.hellos.examplemod.screen.macerator.MaceratorMenu;
 import com.hellos.examplemod.screen.smelter.SmelterMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -25,6 +26,10 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<SmelterMenu>> SMELTER_MENU =
             registryMenuType(SmelterMenu::new, "smelter_menu");
+
+    public static final RegistryObject<MenuType<EnergyStorageMenu>> ENERGY_STORAGE_MENU =
+            registryMenuType(EnergyStorageMenu::new, "energy_storage_menu");
+
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registryMenuType(IContainerFactory<T> factory,
                                                                                                  String name){

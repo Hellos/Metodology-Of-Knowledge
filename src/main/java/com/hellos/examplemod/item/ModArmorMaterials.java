@@ -11,7 +11,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    TIN("tin", 28, new int[]{2, 5, 8, 3}, 19, SoundEvents.ARMOR_EQUIP_GOLD,
+    TIN("custom", 28, new int[]{2, 5, 8, 3}, 19, SoundEvents.ARMOR_EQUIP_NETHERITE,
             2.0F, 0.0F, () -> Ingredient.of(ModItems.TIN_INGOT.get()));
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};

@@ -1,17 +1,17 @@
 {
   "variants": {
-    "facing=east,turned_on=false": {
+    "facing=east": {
       "model": "tutorialmod:block/assembler_block",
       "y": 90
     },
-    "facing=north,turned_on=false": {
+    "facing=north": {
       "model": "tutorialmod:block/assembler_block"
     },
-    "facing=south,turned_on=false": {
+    "facing=south": {
       "model": "tutorialmod:block/assembler_block",
       "y": 180
     },
-    "facing=west,turned_on=false": {
+    "facing=west": {
       "model": "tutorialmod:block/assembler_block",
       "y": 270
     }

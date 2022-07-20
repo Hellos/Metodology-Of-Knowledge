@@ -4,7 +4,6 @@ import com.hellos.examplemod.block.ModBlocks;
 import com.hellos.examplemod.item.ModItems;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockLootTables extends BlockLoot {
@@ -18,7 +17,10 @@ public class ModBlockLootTables extends BlockLoot {
         this.dropSelf(ModBlocks.RAW_COBALT_BLOCK.get());
         this.dropSelf(ModBlocks.RAW_ALUMINUM_BLOCK.get());
         this.dropSelf(ModBlocks.MACERATOR.get());
+//        this.dropSelf(ModBlocks.ASSEMBLER_BLOCK.get());
         this.dropSelf(ModBlocks.SMELTER.get());
+        this.dropSelf(ModBlocks.ENERGY_PIPE_BLOCK.get());
+        this.dropSelf(ModBlocks.ENERGY_STORAGE_BLOCK.get());
         this.dropSelf(ModBlocks.CUSTOM_GLASS.get());
 
 

@@ -53,16 +53,16 @@ public class MaceratorScreen extends AbstractContainerScreen<MaceratorMenu> {
 
         if(isHovering(149, 16, 13, 53, pMouseX, pMouseY)){
             List<Component> list = Lists.newArrayList();
-            MutableComponent component = new TranslatableComponent("block.tutorialmod.macerator.energy_stored").withStyle(ChatFormatting.WHITE);
+            MutableComponent component = new TranslatableComponent("block.tutorialmod.util.energy_stored").withStyle(ChatFormatting.WHITE);
             list.add(component);
-            component = new TranslatableComponent("block.tutorialmod.macerator.energy_stored_info", (this.menu).getEnergy(),
+            component = new TranslatableComponent("block.tutorialmod.util.energy_stored_info", (this.menu).getEnergy(),
                     this.menu.getMaxEnergy()).withStyle(ChatFormatting.AQUA);
             list.add(component);
             renderComponentTooltip(pPoseStack, list, pMouseX, pMouseY);
         }
 
         if(isHovering(91,32,4,25, pMouseX, pMouseY)){
-            renderTooltip(pPoseStack, new TranslatableComponent("block.tutorialmod.macerator.progress", this.menu.getPercentage()), pMouseX, pMouseY);
+            renderTooltip(pPoseStack, new TranslatableComponent("block.tutorialmod.util.progress", this.menu.getPercentage()), pMouseX, pMouseY);
         }
     }
 }

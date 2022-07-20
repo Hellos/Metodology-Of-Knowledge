@@ -1,0 +1,11 @@
+{
+  "type": "tutorialmod:smelting",
+  "ingredients": [
+    {
+      "item": "tutorialmod:deepslate_tin_ore"
+    }
+  ],
+  "output": {
+    "item": "tutorialmod:tin_ingot"
+  }
+}
